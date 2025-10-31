@@ -19,18 +19,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.notekeeperapp.NoteModel
+import com.example.notekeeperapp.NoteViewModel
 import com.example.notekeeperapp.data.model.Note
 
 @Composable
 fun AddNoteScreen(
-    noteModel: NoteModel = viewModel(),
-    onNavigate: () -> Unit
+    noteModel: NoteViewModel,
+    onBack: () -> Unit
 ){
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
-    var id by remember { mutableStateOf(0) }
-    var date by remember { mutableStateOf("") }
+
 
 
     Column(
@@ -51,34 +50,22 @@ fun AddNoteScreen(
             onChange = { content = it },
             label = "Content"
         )
+
         Spacer(Modifier.height(12.dp))
-        InputField(
-            value = date,
-            onChange = { date = it },
-            label = "Date"
-        )
-        Spacer(Modifier.height(12.dp))
+
         Button(
             onClick = {
-                id++
-                val note = Note(
-                    id = id,
-                    title = title,
-                    content = content,
-                    date = date
-                )
-                noteModel.addNote(note)
-                title = ""
-                content = ""
-                date = ""
+                noteModel.addNote(Note( title = title, content = content))
+                onBack()
             }
         ) {
+
             Text("Add Note")
         }
         Spacer(Modifier.height(52.dp))
         Button(
             onClick = {
-                onNavigate()
+
             }
         ) {
             Text("View All Notes")
@@ -106,7 +93,5 @@ fun InputField(
 @Preview(showBackground = true)
 @Composable
 private fun AddNoteScreenPreview() {
-    AddNoteScreen(
-        onNavigate = {}
-    )
+
 }

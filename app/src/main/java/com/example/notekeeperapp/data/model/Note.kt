@@ -1,10 +1,15 @@
 package com.example.notekeeperapp.data.model
 
-//@Entity(tableName = "notes")
+import androidx.datastore.preferences.protobuf.Timestamp
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "notes_table")
 data class Note(
-    val id: Int,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     val title: String,
     val content: String,
-    val date: String
+    val timestamp: Long = System.currentTimeMillis()
 ) {
 }

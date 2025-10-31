@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 //    id("com.android.application")
 //    id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp") version "1.9.25-1.0.20"
+    id("com.google.devtools.ksp") version "2.2.21-2.0.4"
 }
 
 android {
@@ -56,6 +56,8 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     ksp(libs.room.compiler)
 
     // Coroutines for background operations
