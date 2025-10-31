@@ -12,8 +12,8 @@ import com.example.notekeeperapp.ui.screens.NoteListScreen
 fun AppNavigation() {
     val navController: NavHostController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "add_note_screen") {
-        composable(route = "add_note_screen") { AddNoteScreen { navController.navigate("note_list_screen") } }
-        composable(route = "note_list_screen") { NoteListScreen() }
-    }
+//    NavHost(navController = navController, startDestination = "add_note_screen") {
+//        composable(route = "add_note_screen") { AddNoteScreen { navController.navigate("note_list_screen") } }
+//        composable(route = "note_list_screen") { NoteListScreen() }
+//    }
 }
