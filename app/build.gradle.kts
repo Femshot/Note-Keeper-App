@@ -52,10 +52,18 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+
+    // Navigation dependency
     implementation(libs.androidx.navigation.compose)
+
+    // datastore dependency
     implementation(libs.androidx.datastore.preferences)
+
+    // Room dependencies
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
+
+    // Lifecycle Viewmodel dependencies
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     ksp(libs.room.compiler)

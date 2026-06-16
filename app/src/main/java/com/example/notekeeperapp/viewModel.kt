@@ -1,10 +1,10 @@
 package com.example.notekeeperapp
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.notekeeperapp.data.model.Note
 import com.example.notekeeperapp.data.respository.NoteRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
@@ -14,22 +14,20 @@ class NoteViewModel(private val noteRepository: NoteRepository): ViewModel() {
     val selectedNote: MutableStateFlow<Note?> = _selectedNote
 
     fun addNote(note: Note) {
-        viewModelScope.launch{
+        viewModelScope.launch(Dispatchers.IO) {
             noteRepository.insert(note)
-
         }
-//        Log.d("notelist", " curent list is ${notes}")
     }
+
     fun deleteNote(note: Note){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             noteRepository.delete(note)
-
         }
     }
-    fun getNotebyid(id: Int){
-        viewModelScope.launch {
-            _selectedNote.value = noteRepository.getNoteById(id)
 
+    fun getNoteById(id: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            _selectedNote.value = noteRepository.getNoteById(id)
         }
     }
 }

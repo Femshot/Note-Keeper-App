@@ -20,20 +20,18 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Create Room database instance
-        val db = Room.databaseBuilder(
-            applicationContext,
-            NoteDatabase::class.java,
-            "note_database"
-        ).build()
+        // Create dao for Repository
+        val dao = NoteDatabase.getDatabase(applicationContext)?.noteDao()
 
         // Create repository instance
-        val repository = NoteRepository(db.noteDao())
+        val repository = dao?.let { NoteRepository(it) }
 
         setContent {
-            val factory = viewModelFactory {
-                initializer {
-                    NoteViewModel(repository)
+            val factory = repository?.let {
+                viewModelFactory {
+                    initializer {
+                        NoteViewModel(it)
+                    }
                 }
             }
             val viewModel: NoteViewModel = viewModel(factory = factory)
