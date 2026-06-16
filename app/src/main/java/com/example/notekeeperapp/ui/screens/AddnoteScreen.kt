@@ -30,8 +30,6 @@ fun AddNoteScreen(
     var title by remember { mutableStateOf("") }
     var content by remember { mutableStateOf("") }
 
-
-
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -55,8 +53,10 @@ fun AddNoteScreen(
 
         Button(
             onClick = {
-                noteModel.addNote(Note( title = title, content = content))
-                onBack()
+                if (title.isNotBlank() && content.isNotBlank()) {
+                    noteModel.addNote(Note(title = title, content = content))
+                    onBack()
+                }
             }
         ) {
 
@@ -65,7 +65,7 @@ fun AddNoteScreen(
         Spacer(Modifier.height(52.dp))
         Button(
             onClick = {
-
+                onBack()
             }
         ) {
             Text("View All Notes")

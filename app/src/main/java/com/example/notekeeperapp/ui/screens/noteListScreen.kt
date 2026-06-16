@@ -41,9 +41,16 @@ fun NoteListScreen(
             }
         }
     ) { padding ->
-        LazyColumn(modifier = Modifier.padding(padding).fillMaxSize()) {
+        LazyColumn(
+            modifier = Modifier
+                .padding(padding)
+                .fillMaxSize()
+        ) {
             items(notes.value) { note ->
-                NoteItem(note = note, onClick = { onNoteClick(note.id) })
+                NoteItem(
+                    note = note,
+                    onClick = { onNoteClick(note.id) }
+                )
             }
         }
     }
@@ -55,21 +62,23 @@ fun NoteListScreen(
 fun NoteItem(note: Note, onClick: () -> Unit) {
     Card (
         modifier = Modifier
-            .padding(8.dp)
             .fillMaxWidth()
+            .padding(16.dp)
             .clickable{onClick()}
     )
     {
-        Column{
+        Column(
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier
+                .padding(8.dp)
+        ) {
             Row(
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(text = note.id.toString())
                 Text(text = note.title)
-
             }
             Text(text = note.content)
         }
     }
-
 }

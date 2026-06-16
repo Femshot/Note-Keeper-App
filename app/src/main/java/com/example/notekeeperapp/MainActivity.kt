@@ -10,7 +10,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
-import androidx.room.Room
 import com.example.notekeeperapp.data.NoteDatabase
 import com.example.notekeeperapp.data.respository.NoteRepository
 import com.example.notekeeperapp.ui.screens.AddNoteScreen
